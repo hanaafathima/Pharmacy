@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: PRODUCT-SERVICE
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+cloud:
+  loadbalancer:
+    ribbon:
+      enabled: false
+

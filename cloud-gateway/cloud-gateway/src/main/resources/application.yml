@@ -1,0 +1,29 @@
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+server:
+  port: 9191
+spring:
+  application:
+    name: API-GATEWAY
+  zipkin:
+    base-url: http://localhost:9411
+  cloud:
+    gateway:
+      routes:
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/pharmacy-management/product/**
+
+        - id: ORDER-SERVICE
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/pharmacy-management/order/**
+
+        - id: CUSTOMER-SERVICE
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/pharmacy-management/customer/**
